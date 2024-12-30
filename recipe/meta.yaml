@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/sridentify-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/sridentify-{{ version }}.tar.gz
   sha256: 4fff6ed32f27ccb2c7d4bc839bfa4c5e5792f25b37cad835c027b5afafa94be2
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - sridentify=sridentify.cli:main
@@ -20,9 +20,9 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -32,6 +32,7 @@ test:
     - sridentify --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/cmollet/sridentify
